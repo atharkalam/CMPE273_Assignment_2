@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+message Request {
+    string operation =1;
+    string key = 2;
+    string value = 3;
+}
+
+message Response {
+    string data = 1;
+}
+
+message ConnectionRequest {
+}
+
+message ConnectionResponse {
+    string operation = 1;
+    string key = 2;
+    string value = 3;
+}
+
+service Datastore {
+   rpc getConnection(ConnectionRequest) returns (stream ConnectionResponse) {}
+   rpc operation(Request) returns (Response) {}
+}
+
